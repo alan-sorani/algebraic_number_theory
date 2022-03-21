@@ -1,0 +1,300 @@
+\documentclass[11pt]{karticle}
+
+\usepackage{math}
+
+%---MATH MACROS---
+
+\addbibresource{bibliography.bib}
+
+%---TITLE---
+
+\title{Lecture Notes to a Course on Algebraic Number Theory \\ \small{Taught by Prof. Uri Shapira at Technion IIT during Spring 2022}}
+\author{Typed by Elad Tzorani}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+%TODO edit beginning sections and add course information
+
+\section*{Course Information}
+
+The course will be based on lecture notes by Ehud De Shalit on algebraic number theory, and partially on Milne's text on algebraic number theory (henceforward, ANT).
+
+\section*{Prerequisites}
+
+The course will assume undergraduate knowledge in ring theory and Galois theory.
+
+\section{Notations \& Conventions}
+
+%TODO organize this
+
+\begin{itemize}
+\item All rings are assumed to be commutative and unital, unless mentioned otherwise. 
+\item The rings of integers, reals and complex numbers are respectively denoted $\mbb{Z}$, $\mbb{R}$ and $\mbb{C}$.
+\item For $n \in \mbb{Z}_+$ we denote $\brs{n} = \set{1, \ldots, n}$.
+\end{itemize}
+
+\section{A Short Review on Rings}
+
+\begin{definition}[Euclidean Ring]
+Let $R$ be a ring. We say $R$ is \emph{Euclidean} if there is a map $N \colon R \to \mbb{Z}_+$ that satisfies the following properties.
+
+\begin{enumerate}[label = (\roman*)]
+\item \emph{Sub-multiplicativity:} $N\prs{a} = 0$ if and only if $a=0$, and
+\[N\prs{\alpha \beta} \leq N\prs{\alpha} N\prs{\beta} \text{.}\]
+\item For all $\alpha,\beta \in R$ such that $\alpha \neq 0$, there are $q,r \in R$ such that
+\[\beta = q \alpha + r, \quad N\prs{r} < N\prs{\alpha} \text{.}\]
+\end{enumerate}
+
+Such a map is called the \emph{Euclidean norm} of $R$.
+\end{definition}
+
+\begin{definition}[Group of Units in a Ring]
+Let $R$ be a ring. The \emph{group of units} in $R$ is
+\[R^\times \coloneqq \set{\alpha \in R}{\exists \beta \in R \colon \alpha \beta = 1} \text{.}\]
+\end{definition}
+
+\begin{definition}[Associate Elements]
+Let $R$ be a ring and let $\alpha,\beta \in R$. We say that $\alpha, \beta$ are \emph{associates}, and denote $\alpha \sim \beta$, if there's $\eps \in R^\times$ such that $\alpha = \eps \beta$.
+\end{definition}
+
+\begin{definition}[Reducible Element]
+Let $R$ be a ring and let $\alpha \in R \setminus \set{0}$. We say that $\alpha$ is \emph{reducible} if there are $\beta,\gamma \in R \setminus R^\times$ such that $\alpha = \beta \cdot \gamma$.
+\end{definition}
+
+\begin{remark}
+The subset of reducible elements of $R$ is $R^\times \cdot R^\times$.
+\end{remark}
+
+\begin{definition}[Irreducible Element]
+Let $R$ be a ring. An element $\alpha \in R$ is \emph{irreducible} if it isn't reducible.
+\end{definition}
+
+\begin{definition}[Prime Elements]
+Let $R$ be a ring and let $\alpha \in R \setminus \prs{R^\times \cup \set{0}}$. We say that $\alpha$ is \emph{prime} if for $\beta,\gamma \in R$ such that $\alpha \mid \beta \cdot \gamma$ one has either $\alpha \mid \beta$ or $\alpha \mid \gamma$.
+\end{definition}
+
+\begin{definition}[Ideal in a Ring]
+Let $R$ be a ring. An \emph{ideal} of $R$ is a strict non-zero subset $I \subseteq R$ that is an additive subgroup and such that $aI, Ia \subseteq I$ for all $a \in R$.
+\end{definition}
+
+\begin{notation}
+Let $R$ be a ring. We denote $I \leq R$ to say that $I$ is an ideal of $R$.
+\end{notation}
+
+\begin{definition}[Prime Ideal]
+Let $R$ be a ring and let $I \leq R$. We say that $I$ is \emph{prime} if whenever $\beta,\gamma \in R$ are such that $\beta \cdot \gamma \in I$, one has $\beta \in I$ or $\gamma \in I$.
+\end{definition}
+
+\begin{definition}[Principal Ideal]
+Let $R$ be a ring and let $\alpha \in R$. We denote
+\[\prs{\alpha} \coloneqq \alpha \cdot R = \set{\alpha \cdot \beta}{\beta \in R} \text{.}\]
+Ideals of this form are called \emph{principal ideals}.
+\end{definition}
+
+\begin{definition}
+Let $R$ be a ring. We say that $R$ is a \emph{principal ideal domain (PID)} if any ideal of $R$ is principal.
+\end{definition}
+
+\begin{theorem}
+Any Euclidean domain is PID.
+\end{theorem}
+
+\begin{lemma}
+Let $R$ be a ring and let $\alpha \in R$. Then $\alpha$ is prime if and only if $\prs{\alpha}$ is a prime ideal.
+\end{lemma}
+
+\begin{lemma}
+Let $R$ be a ring. Prime elements of $R$ are irreducible.
+\end{lemma}
+
+\begin{exercise}
+Let $R$ be a ring and let $I \leq R$. Then $I$ is prime if and only if $R/I$ is an integral domain.
+\end{exercise}
+
+\begin{exercise}
+Let $R$ be a ring. An ideal $I \leq R$ is maximal if and only if $R/I$ is a field.
+\end{exercise}
+
+\begin{corollary}
+Maximal ideals are prime.
+\end{corollary}
+
+\begin{exercise}
+Let $R$ be a ring and let $\alpha \in R$. Then $\alpha$ is irreducible if and only if $\prs{\alpha}$ is maximal among principal ideals.
+\end{exercise}
+
+\begin{definition}[Unique Factorization Domain]
+Let $R$ be a ring. We say that $R$ is a \emph{unique factorization domain (UFD)} if any $\alpha \in R$ can be written as $\alpha = \beta_1 \cdot \ldots \cdot \beta_k$ where $\beta_i \in R$ are irreducible, and if $\beta_1 \cdot \ldots \cdot \beta_k = \gamma_1 \cdot \ldots \cdot \gamma_\ell$ are two products of irreducible elements  of $R$, then $\ell = k$ and there is a bijection $\sigma \colon \brs{k} \to \brs{k}$ such that $\beta_i \sim \gamma_{\sigma\prs{i}}$.
+\end{definition}
+
+\begin{corollary}
+Let $R$ be a PID or a UFD. Any irreducible ideal of $R$ is prime.
+\end{corollary}
+
+\begin{exercise}
+A PID is also a UFD.
+\end{exercise}
+
+\begin{example}
+Consider the ring $R \coloneqq \mbb{Z}\brs{\sqrt{-5}}$. We can write
+\[6 = 2 \cdot 3 = \prs{1 + \sqrt{-5}}\prs{1 - \sqrt{-5}}\]
+which are two possible decompositions of $6$ in $\mbb{Z}\brs{\sqrt{-5}}$. We claim that $2,3, \prs{1+\sqrt{-5}}, \prs{1+\sqrt{-5}}$ are all irreducible and non-associates, which implies that $\mbb{Z}\brs{\sqrt{-5}}$ is not a UFD.
+
+On $R$ we have a multiplicative \emph{norm} map (that doesn't make it an Euclidean domain)
+\begin{align*}
+N \colon \mbb{Z}\brs{\sqrt{-5}} &\to \mbb{Z} \\
+a + b\sqrt{-5} &\mapsto \prs{a+b\sqrt{-5}}\prs{a - b\sqrt{-5}} = a^2 + 5 b^2 \text{.}
+\end{align*}
+
+One can use $N$ to check that $2,3, \prs{1+\sqrt{-5}}, \prs{1+\sqrt{-5}}$ are irreducible and non-associates.
+\end{example}
+
+\begin{exercise}
+Use $N$ to check that $2,3, \prs{1+\sqrt{-5}}, \prs{1+\sqrt{-5}}$ are irreducible and non-associates.
+\end{exercise}
+
+\section{Preliminaries to Algebraic Number Theory}
+
+\subsection{Definition and Motivation}
+
+ANT is the study of finite field extensions of $\mbb{Q}$ and their rings of integers. ANT is used in solving and analysis of questions about integers.
+
+\begin{definition}[Number Field]
+A field $K$ is called a \emph{number field} if $\mbb{Q} \subseteq K$ and \[\brs{K : \mbb{Q}} \coloneqq \deg\prs{K/\mbb{Q}} < \infty \text{.}\]
+\end{definition}
+
+\begin{definition}[$p$-Adic Valuation]
+Let $n \in \mbb{Z}$ and let $p \in \mbb{Z}$ be a prime. For $n \neq 0$, we denote by $v_p\prs{n}$ the power in which $p$ appears in the decomposition of $n$ into primes; we denote also $v_p\prs{0} = \infty$.
+We call $v_p \colon \mbb{Z} \to \mbb{Z} \cup \set{\infty}$ the \emph{$p$-adic valuation}.
+\end{definition}
+
+\begin{theorem}[Fermat]
+An integer $n \in \mbb{Z}$ is a sum of two squares if and only if for any $q \in \mbb{Z}$ satisfying $q \equiv 3 \mod{4}$ one has $v_q\prs{n} \in 2 \mbb{Z}$.
+\end{theorem}
+
+\begin{proof}
+Consider the ring $R = \mbb{Z}\brs{i}$ of \emph{Gaussian integers} and the \emph{norm}
+\begin{align*}
+N \colon \mbb{Z}\brs{i} &\to \mbb{Z} \\
+a + bi &\mapsto \prs{a+bi}\prs{a-bi} = a^2 + b^2 \text{.}
+\end{align*}
+
+\begin{itemize}
+\item
+
+We first claim that $R$ is an Euclidean domain. We show this by showing that $N$ is an Euclidean norm.
+Let $\alpha,\beta \in R$ with $\alpha \neq 0$. We want to find $q,r \in \mbb{Z}\brs{i}$ such that $N\prs{r} < N\prs{\alpha}$ and $\beta = q \alpha + r$.
+Write $\beta = \beta / \alpha \cdot \alpha$ in $\mbb{Q}\brs{i} = \mrm{Frac}\prs{R}$. For any $q \in \mbb{Z}\brs{i}$ we can write
+\begin{align*}
+\beta &= \alpha + \frac{\beta}{\alpha} \cdot \alpha - q \cdot \alpha \\&= q \cdot \alpha + \alpha\prs{\frac{\beta}{\alpha} - q} \text{.}
+\end{align*}
+Extend $N \colon \mbb{Q}\prs{i} \to \mbb{Q}$ via $N\prs{a + bi} = a^2 + b^2$.
+We show that there's $q \in \mbb{Z}\brs{i}$ such that $N\prs{\beta / \alpha - q} < 1$, from which $N\prs{\alpha\prs{\beta / \alpha - q}} < N\prs{\alpha}$ by sub-multiplicativity, as required.
+Indeed, each point of $\mbb{C}$ is within distance at most $1$ from the lattice $\mbb{Z}\brs{i}$.\footnote{We say that the \emph{covering radius} of $\mbb{Z}\brs{i} \subseteq \mbb{C}$ is $\sqrt{2}/2$, since this is the smallest number for which any ball in $\mbb{C}$ of radius $r$ contains a point of $\mbb{Z}]\prs{i}$.}
+
+\item
+We now show that
+\begin{align*}
+\mbb{Z}\brs{i}^\times &= \set{\alpha \in \mbb{Z}\brs{i}}{N\prs{\alpha \in \set{\pm 1}}}
+\\&= \set{\pm 1, \pm i} \text{.}
+\end{align*}
+Let $\alpha \in R$. If $N\prs{\alpha} = \alpha \bar{\alpha} = 1$, we get that $\alpha \in \mbb{Z}\brs{i}^\times$. On the other hand, if $\alpha \cdot \beta = 1$, we get \[N\prs{\alpha} N\prs{\beta} = N\prs{\alpha \beta} = N\prs{1} = 1\]
+so $N\prs{\alpha} \in \mbb{Z}^\times$ so $N\prs{\alpha} \in \set{\pm 1}$. \footnote{Note that in our case, $N\prs{\alpha} \geq 0$ so it follows that $N\prs{\alpha} = 1$. The statement is more general when one requires $N\prs{\alpha} \in \set{\pm 1}$ instead.}
+
+\item We want to understand
+\[\im\prs{N} = \set{N\prs{z} = z \bar{z}}{z \in \mbb{Z}} = \set{a^2 + b^2}{a,b \in \mbb{Z}} \text{.}\]
+
+\begin{itemize}
+\item Let $p$ be a \emph{rational prime} (i.e. prime in $\mbb{Z}$. 
+We have
+\begin{align*}
+\mbb{Z}\brs{i} / \prs{p} &\cong \mbb{Z}\brs{x} / \prs{x^2 + 1, p}
+\\&\cong \mbb{F}_p\brs{x}
+\end{align*}
+so $p$ remains a prime in $\mbb{Z}\brs{i}$ if and only if $-1$ is not a square in $\mbb{F}_p$.
+
+\item We claim that $-1$ is a square in $\mbb{F}_p$ if and only if $p \equiv 1 \mod{4}$. From this and the above calculation we get that $p$ remains a prime in $\mbb{Z}\brs{i}$ if and only if $p \equiv 3 \mod{4}$.
+
+Consider
+\begin{align*}
+\varphi \colon \mbb{F}_p^\times &\to \mbb{F}_p^\times \\
+\alpha &\mapsto \alpha^2 \text{.}
+\end{align*}
+We have $\ker\prs{\varphi} = \set{\pm 1}$, so by the isomorphism theorem $\im\prs{\varphi}$ is a subgroup of $\mbb{F}_p^\times$ of size $\#\mbb{F}_p / \#\set{\pm 1} = \frac{p-1}{2}$.
+We get that $-1 \in \im\prs{\varphi}$ if and only if $\left. \ker\prs{\varphi} \right|_{\im\prs{\varphi}} \neq \set{1}$.
+Now, $\mbb{F}_p^\times$ is a cyclic group of order $p-1$ and $\im\prs{\varphi} \subseteq \mbb{F}_p^\times$ is another cyclic group of size $\frac{p-1}{2}$; hence this is the case when $2$ and $\frac{p-1}{2}$ are coprime, or equivalently $p \equiv 1 \mod{4}$.
+
+\item Note that $2 = \prs{1+i}\prs{1-i}$, where $1 \pm i$ are irreducible because $N\prs{1+i}$ is prime in $\mbb{Z}$. Hence this is a decomposition of $2$ into a product of irreducible elements and in particular $2$ isn't prime in $\mbb{Z}\brs{i}$. (\textbf{Exercise:} Write formally why $1 \pm i$ are irreducible elements of $\mbb{Z}\brs{i}$.)
+
+\item If $p \equiv 1 \mod{4}$ is a rational prime, we claim that there's an irreducible element $\pi \in \mbb{Z}\brs{i}$ for which $p = \pi \bar{\pi}$ and $N\prs{\pi} = p$.
+
+To show this, write $p = \pi \lambda$ for $\pi$ irreducible and $\lambda$ non-unit. We get
+\begin{align*}
+p^2 &= N\prs{p}
+\\&= N\prs{\pi} \cdot N\prs{\lambda}
+\\&= \pi \bar{\pi} \cdot \lambda \bar{\lambda} \text{.}
+\end{align*}
+Since $\lambda$ is a non-unit, we get $\lambda \bar{\lambda} \neq 1$, so $\lambda \bar{\lambda} \in \set{p, p^2}$. Similarly, $\pi \bar{\pi} \in \set{p, p^2}$, hence $\pi \bar{\pi} = \lambda \bar{\lambda} = p$, as required.
+
+\item We claim that if $\pi \in \mbb{Z}\brs{i}$ is an irreducible element other than $1 \pm i$ and not in $\mbb{Z}$, then $p coloneqq \pi \bar{\pi}$ is a rational prime with $p \equiv 1 \mod{4}$.
+
+Indeed, consider $p \coloneqq N\prs{\pi} = \pi \bar{\pi}$ is a product of rational primes. By the uniqueness of the decomposition it follows that $p \equiv 1 \mod{4}$ is a rational prime.
+\end{itemize}
+
+In conclusion, taking $z \in \mbb{Z}\brs{i}$ we can write
+\[z = \eps \prs{1 + i}^r \prs{\prod_{i \in [k]} \pi_i^{m_i}} \prs{\prod_{j \in \brs{\ell}} q_j^{n_j}}\]
+for $\eps \in \mbb{Z}\brs{i}$ a unit, $\pi_i$ primes in $\mbb{Z}\brs{i}$ of norms $p_i$ which are rational primes with $p_i \equiv 1 \mod{4}$, and $q_j$ are rational primes with $q_j \equiv 3 \mod{4}$.
+We get that
+\[N\prs{z} = 2^r \prs{\prod_{i \in [k]} p_i^{m_i}} \prs{\prod_{j \in \brs{\ell}} q_j^{2 m_j}} \text{.}\]
+From here one gets the result.
+\end{itemize}
+\end{proof}
+
+\subsection{Field Embeddings}
+
+\begin{definition}[Field Embedding]
+Let $K,L$ be two fields. Field homomorphisms $\sigma \colon K \to L$ are called \emph{field embeddings}.
+The collection of such embeddings is denoted
+$\mrm{Emb}\prs{K,L}$.
+\end{definition}
+
+\begin{definition}[Real \& Complex Embeddings]
+An embedding $\sigma \in \mrm{Emb}\prs{K,\mbb{C}}$ is called \emph{real} if $\sigma\prs{K} \subseteq \mbb{R}$.
+It is called \emph{complex} otherwise.
+\end{definition}
+
+\begin{theorem}
+Let $K$ be a degree $n$ number field. There are exactly $n$ distinct embeddings $\sigma_i \colon K \to \mbb{C}$.
+\end{theorem}
+
+\begin{corollary}
+Let $K$ be an algebraic number field of degree $n$.
+There are $r_1, r_2 \in \mbb{Z}$ non-negative with $r_1$ real embeddings and $2 r_2$ complex embeddings which are divided into pairs of the form $\sigma, \bar{\sigma}$. We have $n = r_1 + 2 r_2$.
+
+We fix an ordering of $\mrm{Emb}\prs{K,\mbb{C}}$:
+\[\sigma_1, \ldots, \sigma_{r_1}, \sigma_{r_1 + 1}, \ldots, \sigma_{r_1 + r_2}, \sigma_{r_1 + r_2 + 1}, \ldots, \sigma_{r_1 + 2 r_2}\]
+such that $\sigma_{r_1 + 1}, \ldots, \sigma_{r_1}$ are real embeddings, $\sigma_{r_1 + 1}, \ldots, \sigma_{r_1 + r_2}$ are non-conjugate complex embeddings, and for all $i \in \brs{r_2}$ one has $\bar{\sigma}_{r_1 + r_2 + j} = \sigma_{r_1 + j}$.
+\end{corollary}
+
+\begin{definition}[Geometric Embedding of a Field into $\mbb{R}^n$]
+Let $K$ be an algebraic number field of degree $n$. Let $r_1, r_2$ be as in the above corollary.
+We define a $\mbb{Q}$-linear map
+\begin{align*}
+\varphi \colon K &\to \mbb{R}^n \cong \mbb{R}^{r_1} \times \prs{\mbb{R}^2}^{r_2} \\
+\alpha &\mapsto \prs{\sigma_1\prs{\alpha}, \sigma_2\prs{\alpha}, \ldots, \sigma_{r_1}\prs{\alpha}, \Re\prs{\sigma_{r_1 + 1}\prs{\alpha}}, \Im\prs{\sigma_{r_1 + 1}\prs{\alpha}}, \ldots, \Re\prs{\sigma_{r_1 + r_2}\prs{\alpha}}, \Im\prs{\sigma_{r_1 + r_2}\prs{\alpha}}} \text{.}
+\end{align*}
+This is called the \emph{geometric embedding of $K$ into $\mbb{R}^n$}.
+\end{definition}
+
+\begin{proposition}
+Let $K$ be an algebraic number field of degree $n$, and let $\varphi$ be as above. Then $\varphi\prs{K}$ contains an $\mbb{R}$-basis of $\mbb{R}^n$.
+\end{proposition}
+
+%---BIBLIOGRAPHY & INDEX---
+
+\printbibliography
+
+\end{document}
