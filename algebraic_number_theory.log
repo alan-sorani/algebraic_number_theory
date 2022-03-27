@@ -1,4 +1,4 @@
-This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.6.28) (format=lualatex 2021.11.4)  20 MAR 2022 15:21
+This is LuaHBTeX, Version 1.14.0 (MiKTeX 21.6.28) (format=lualatex 2021.11.4)  27 MAR 2022 15:14
  restricted system commands enabled.
 **algebraic_number_theory.tex
 (./algebraic_number_theory.tex
@@ -1602,7 +1602,7 @@ LaTeX Font Info:    Trying to load font information for OMS+rsfs on input line
 
 
 {C:/Users/EladT/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (42.71507pt too wide) in paragraph at lines 143--145
+Overfull \hbox (42.71507pt too wide) in paragraph at lines 144--146
 \TU/lmr/m/n/10.95 which are two pos-si-ble de-com-po-si-tions of $\OT1/cmr/m/n/
 10.95 6$ \TU/lmr/m/n/10.95 in $\U/msb/m/n/10.95 Z []$\TU/lmr/m/n/10.95 . We clai
 m that $\OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 ; \OT1/cmr/m/n/10.95 3\OML/cmm/
@@ -1610,14 +1610,15 @@ m/it/10.95 ; [] ; []$
  []
 
 [3] [4] [5]
-Overfull \hbox (57.8691pt too wide) detected at line 288
+Overfull \hbox (57.8691pt too wide) detected at line 289
 []
  []
 
+[6] [7] [8] [9]
 
-LaTeX Warning: Empty bibliography on input line 298.
+LaTeX Warning: Empty bibliography on input line 484.
 
-[6] (./algebraic_number_theory.aux)
+[10] (./algebraic_number_theory.aux)
 Package rerunfilecheck Info: File `algebraic_number_theory.out' has not changed
 .
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
@@ -1627,14 +1628,14 @@ Package logreq Info: Writing requests to 'algebraic_number_theory.run.xml'.
 )
 
 Here is how much of LuaTeX's memory you used:
- 48399 strings out of 478064
+ 48446 strings out of 478064
  100000,2373549 words of node,token memory allocated
- 689 words of node memory still in use:
-   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 22 attribute, 75 glue_spec
-, 22 attribute_list, 2 write nodes
-   avail lists: 1:3,2:791,3:267,4:95,5:534,6:51,7:5417,8:99,9:861,10:10,11:242
- 67123 multiletter control sequences out of 65536+600000
- 93 fonts using 7752927 bytes
+ 741 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 4 glue, 4 kern, 1 glyph, 35 attribute, 75 glue_spec
+, 35 attribute_list, 2 write nodes
+   avail lists: 1:3,2:795,3:271,4:95,5:552,6:50,7:5397,8:99,9:881,10:10,11:246
+ 67135 multiletter control sequences out of 65536+600000
+ 95 fonts using 8016303 bytes
  136i,14n,128p,10628b,805s stack positions out of 5000i,500n,10000p,200000b,80000s
 <//?/c:/users/eladt/appdata/local/programs/miktex/fonts/opentype/public/lm/lmrom
 an9-italic.otf><//?/c:/users/eladt/appdata/local/programs/miktex/fonts/opentype/
@@ -1661,9 +1662,9 @@ X/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/EladT/AppData/Local/Programs
 Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/EladT/AppData
 /Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/EladT/
 AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on algebraic_number_theory.pdf (6 pages, 206296 bytes).
+Output written on algebraic_number_theory.pdf (10 pages, 242088 bytes).
 
-PDF statistics: 214 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 131072)
- 56 words of extra memory for PDF output out of 10000 (max. 100000000)
+PDF statistics: 274 PDF objects out of 1000 (max. 8388607)
+ 86 named destinations out of 1000 (max. 131072)
+ 80 words of extra memory for PDF output out of 10000 (max. 100000000)
 

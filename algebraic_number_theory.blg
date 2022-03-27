@@ -1,9 +1,9 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'algebraic_number_theory.blg'
-[127] biber-MSWIN64:340> INFO - === 
-[166] Biber.pm:415> INFO - Reading 'algebraic_number_theory.bcf'
-[294] Biber.pm:952> INFO - Found 0 citekeys in bib section 0
-[301] Utils.pm:395> WARN - The file 'algebraic_number_theory.bcf' does not contain any citations!
-[311] bbl.pm:654> INFO - Writing 'algebraic_number_theory.bbl' with encoding 'UTF-8'
-[311] bbl.pm:757> INFO - Output to algebraic_number_theory.bbl
-[312] Biber.pm:128> INFO - WARNINGS: 1
+[137] biber-MSWIN64:340> INFO - === 
+[174] Biber.pm:415> INFO - Reading 'algebraic_number_theory.bcf'
+[306] Biber.pm:952> INFO - Found 0 citekeys in bib section 0
+[312] Utils.pm:395> WARN - The file 'algebraic_number_theory.bcf' does not contain any citations!
+[321] bbl.pm:654> INFO - Writing 'algebraic_number_theory.bbl' with encoding 'UTF-8'
+[322] bbl.pm:757> INFO - Output to algebraic_number_theory.bbl
+[322] Biber.pm:128> INFO - WARNINGS: 1
