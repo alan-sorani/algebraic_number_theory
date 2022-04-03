@@ -1,0 +1,29 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{maths}[2020/08/11 fonts for maths]
+
+\RequirePackage{amsmath,amsfonts,amssymb,mathrsfs,mathtools}
+
+\RequirePackage{dsfont}
+
+%Latin
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\mfrak}[1]{\mathfrak{#1}}
+\newcommand{\mscr}[1]{\mathscr{#1}}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+
+%Greek
+
+\let\temp\phi
+\let\phi\varphi
+\let\varphi\temp
+
+\let\temp\epsilon
+\let\epsilon\varepsilon
+\let\varepsilon\temp
+
+\newcommand{\eps}{\epsilon}
+\newcommand{\vareps}{\varepsilon}
+
+%%
+%% End of file `math-fonts.sty'.

@@ -1,0 +1,70 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{maths}[2018/06/16 Mathematics Theorems]
+
+\RequirePackage{etoolbox}
+\RequirePackage[amsmath, thmmarks]{ntheorem}
+\theoremseparator{.}
+
+%proof style
+\theoremstyle{nonumberplain}
+\theoremheaderfont{\itshape}
+\theorembodyfont{\upshape}
+\theoremsymbol{\ensuremath{\blacksquare}}
+\newtheorem{proof}{הוכחה}
+
+%theorem-like environments
+\theoremstyle{plain} %default
+\theorembodyfont{\itshape}
+\theoremheaderfont{\bfseries}
+\theoremsymbol{}
+
+\newtheorem{theorem}{משפט}[section]
+\newtheorem{lemma}[theorem]{למה}
+\newtheorem{corollary}[theorem]{מסקנה}
+\newtheorem{proposition}[theorem]{טענה}
+\newtheorem{conjecture}[theorem]{השערה}
+\newtheorem{criterion}[theorem]{קריטריון}
+\newtheorem{assertion}[theorem]{הכרזה}
+\newtheorem{fact}[theorem]{עובדה}
+\newtheorem{hypothesis}[theorem]{השערה}
+
+%definition-like environments
+\theorembodyfont{\upshape}
+
+\newtheorem{definition}[theorem]{הגדרה}
+\newtheorem{condition}[theorem]{תנאי}
+\newtheorem{axiom}{אקסיומה}
+\newtheorem{postulate}[axiom]{הנחת עבודה}
+\newtheorem{property}[theorem]{תכונה}
+\newtheorem{terminology}[theorem]{טרמינולוגיה}
+\newtheorem{algorithm}[theorem]{אלגוריתם}
+
+%example-like environments
+\newtheorem{problem}[theorem]{בעיה}
+\newtheorem{example}[theorem]{דוגמה}
+\newtheorem*{examples*}{דוגמאות}
+\newtheorem{exercise}{תרגיל}
+\newtheorem{question}[theorem]{שאלה}
+\newtheorem{assumption}[theorem]{הנחה}
+
+%remark-like environments
+\newtheorem{remark}[theorem]{הערה}
+\newtheorem{note}[theorem]{הבחנה}
+\newtheorem{observation}[theorem]{הבחנה}
+\newtheorem{notation}[theorem]{סימון}
+\newtheorem{claim}[theorem]{טענה}
+\newtheorem*{summary}{סיכום}
+\newtheorem{acknowledgement}[theorem]{הכרה}
+\newtheorem{case}{מקרה} %use \setcounter{case}{0} to reset numbering
+\newtheorem{option}{אפשרות} %use \setcounter{option}{0} to reset numbering
+\newtheorem*{conclusion}{סיכום}
+\newtheorem*{solution}{פתרון}
+
+\newcommand{\enumthm}{
+\hfill\break
+\vspace{-10pt}
+}
+
+\endinput
+%%
+%% End of file `math-theorems.sty'.

@@ -2,10 +2,6 @@
 
 \usepackage{math}
 
-%---MATH MACROS---
-
-\addbibresource{bibliography.bib}
-
 %---TITLE---
 
 \title{Lecture Notes to a Course on Algebraic Number Theory \\ \small{Taught by Prof. Uri Shapira at Technion IIT during Spring 2022}}
@@ -464,11 +460,17 @@ Furthermore, in this case
 \end{corollary}
 
 \begin{lemma}\label{lemma:fd_volume}
-If $F_1, F_2$ are two fundamental domains of a discrete subgroup $M \leq \mbb{R}^n$, then $\mrm{Vol}\prs{F_1} = \mrm{Vol}\prs{F_2}$.
+If $F_1, F_2 \subseteq \mbb{R}^n$ are two fundamental domains of a discrete subgroup $M \leq \mbb{R}^n$, then $\mrm{Vol}\prs{F_1} = \mrm{Vol}\prs{F_2}$.
 \end{lemma}
 
 \begin{proof}
-%TODO fill in next lecture
+Write
+\[\mbb{R}^n = \bigsqcup_{w \in L} \prs{F_1 + w} = \bigsqcup_{w \in L} \prs{F_2 + w} \text{.}\]
+We get that
+\[F_1 = F_1 \cap \mbb{R}^n = F_! \cap \bigsqcup_{w \in L} \prs{F_2 + w} = \bigsqcup_{w \in L} \prs{F_1 \cap \prs{F_2 + w}} ]text{.}\]
+Then
+\[\mrm{Vol}\prs{F_1} = \sum_{w \in L} \mrm{Vol}\prs{F_1 \cap \prs{F_2 + w}} = \sum_{W \in L}\mrm{Vol}\prs{\prs{F_1 + w} \cap F_2}}\]
+and by the same reasoning this is equal to $\mmr{Vol}\prs{F_2}$, hence the result.
 \end{proof}
 
 \begin{proof}[\ref{corollary:sublattice_covolume}]
@@ -477,10 +479,199 @@ Choose a fundamental domain $F$ for $L_2$ in $\mbb{R}^n$ and choose a set of rep
 If $L_1 \leq L_2$ is of finite index, we've found a fundamental domain of $L_1$ of volume $\brs{L_2 : L_1} \mrm{Vol}\prs{\mbb{R}^n / L_2}$ by \Cref{lemma:fd_volume}. 
 \end{proof}
 
+%LECTURE 3.4.2022
 
+\begin{notation}
+We denote by $\lambda\prs{A}$ the Lebesgue measure of a measurable subset $A \subseteq \mbb{R}^n$.
+\end{notation}
 
-%---BIBLIOGRAPHY & INDEX---
+\begin{definition}
+Let $L \leq \mbb{R}^n$ be a discrete subgroup.
+We define
+\[\mrm{Vol}\prs{\mbb{R}^n / L}\]
+to be $\lambda\prs{F}$ for any choice of measurable fundamental domain $F$ of $L$.
+\end{definition}
 
-\printbibliography
+\begin{corollary}
+Let $L_1 \leq L_2 \leq \mbb{R}^2$ be subgroups of $\mbb{R}^n$ and assume that $L_2$ is a lattice. Then $L_1$ is a lattice iff $\abs{L_2 / L_1} < \infty$, and in this case $\Vol\prs{\mbb{R}^n / L_1} = \brs{L_2 : L_1} \cdot \mrm{Vol}\prs{\mbb{R}^n / L_2}$.
+\end{corollary}
+
+\begin{proof}
+If $\set{v_i}_{i \in I}$ is a set of representatives of $L_2 / L_1$ in $L_2$., and $F$ is a parallelopiped of $L_2$ in $\mbb{R}^n$, then by the above $\tilde{F} = \bigsqcup_{i \in I} \prs{F + v_i}$ is a measurable fundamental domain for $L_1$ in $\mbB{R}^n$. If $\brs{L_2 : L_1} = \abs{I}$ is finite, then by definition we have
+\begin{align*}
+\mrm{Vol}\prs{\mbb{R}^n / L_1} &= \abs{I} \cdot \lambda\prs{F} \\
+&= \brs{L_2 : L_1} \mrm{Vol}\prs{\mbb{R}^n / L_2}
+\end{align*}
+and also $L_1$ is a lattice since it is discrete and cocompact.
+If $\abs{I} = \infty$, then $\mrm{Vol}\prs{\mbb{R}^n / L_1} = \infty$. Then $L_1$ cannot be a lattice.
+\end{proof}
+
+\begin{definition}
+Let $\Lambda \subseteq K$ be a full module. The \emph{discriminant} $\Delta\prs{\Lambda}$ is defined as
+\[\Delta\prs{\Lambda} \coloneqq \det\pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert}^2\]
+where
+\[\Lambda = \Span_{\mbb{Z}}\prs{\alpha_1, \ldots, \alpha_n} \text{.}\]
+\end{definition}
+
+\begin{exercise}
+Show that $\Delta\prs{\Lambda}$ is independent of the ordering of $\sigma_1, \ldots, \sigma_n$ of the embeddings and of the choice of basis for $\Lambda$.
+\end{exercise}
+
+\begin{remark}
+Note that if $\vec{\alpha}, \vec{\beta}$ are two ordered bases of $K/\mbb{Q}$, then
+\[\det\pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert} \brs{\id_K}^{\vec{\beta}}_{\vec{\alpha}} = \det\pmat{\vert & & \vert \\ \vec{\sigma}\prs{\beta_1} & \cdots & \vec{\sigma}\prs{\beta_n} \\ \vert & & \vert} \text{.}\]
+We also saw that $\Span_{\mbb{Z}}\prs{\alpha} = \Span_{\mbb{Z}}\prs{\vec{\beta}}$, so it follows that $\brs{\id_K}^{\vec{\beta}}_{\vec{\alpha}} \in \mrm{GL}_n\prs{\mbb{Z}}$.
+\end{remark}
+
+\begin{remark}
+It holds that $\Delta\prs{\Lambda} \in \mbb{Q}$ by looking at automorphisms of $\mbb{C}$ over $\mbb{Q}$.
+\end{remark}
+
+\begin{remark}
+Recall that the matrix $B \coloneqq \pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert}$ is tightly related to $A \coloneqq \pmat{\vert & & \vert \\ \varphi\prs{\alpha_1} & \cdots & \varphi\prs{\alpha_n} \\ \vert & & \vert}$. We've shown that
+\[\det\prs{B} = \pm \prs{2 i}^{r_2} \cdot \det\prs{A} \text{.}\]
+It follows that
+\[\Delta\prs{\Lambda} = 4^{r_2} \prs{-1}^{r_2} \mrm{Vol}^2\prs{\mbb{R}^2 / \varphi\prs{\Lambda}} \text{.}\]
+This has sign $\prs{-1}^{r_2}$.
+\end{remark}
+
+\begin{remark}
+There is a third important way to interpret the discriminant $\Delta\prs{\Lambda}$.
+
+We look at the trace map
+\begin{align*}
+\mmr{Tr}_{K/\mbb{Q}} \colon K &\to \mbb{Q} \\
+\alpha &\mapsto \sum_{i \in [n]} \sigma_i\prs{\alpha}
+\end{align*}
+and define
+\begin{align*}
+B \colon K \times K &\to \mbb{Q} \\
+\prs{\alpha, \beta} &\mapsto \mrm{Tr}\prs{\alpha \cdot \beta} \text{.}
+\end{align*}
+
+If we choose the basis $\prs{\alpha_1, \ldots, \alpha_n}$ of $\Lambda$ and represent $B$ by the basis $\prs{\alpha_!, \ldots, \alpha_n}$ we get
+\[\brs{B}_{\vec{\alpha}} = \prs{\mrm{Tr}\prs{\alpha_i, \alpha_j}}_{i,j \in [n]} = \prs{\trs{\vec{\sigma}\prs{\alpha_i}, \vec{\sigma}\prs{\alpha_j}}}_{i,j \in [n]} = pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert}^t pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert} \text{.}\]
+We see that $\Delta\prs{\Lambda}$ is just the determinnat of a representing matrix of the trace form with respect to a basis of $\Lambda$ over $\mbb{Z}$. This again shows the rationality of $\Delta\prs{\Lambda}$.
+\end{remark}
+
+\begin{example}
+Suppose $K = \mbb{Q}\prs{\alpha}$ and take
+\[\Lambda = \Span_{\mbb{Z}}\prs{1, \alpha, \alpha^2, \ldots, \alpha^{n-1}} \text{.}\]
+This is a full module in $K$, and we would like to find $\Delta\prs{\Lambda}$.
+By definition,
+\begin{align*}
+\Delta\prs{\Lambda} &= \det\pmat{1 & \sigma_1\prs{\alpha} & \sigma_1\prs{\alpha}^2 & \cdots & \sigma_1\prs{\alpha}^{n-1} \\ \vdots & \vdots & \vdots & \cdots & \vdots \\ 1 & \sigma_n\prs{\sigma} & \sigma_n\prs{\alpha}^2 & \cdots & \sigma_n\prs{\alpha}^{n-1}}^2
+\end{align*}
+which is a Vandermonde matrix. The determinant is then $\prod_{i > j} \prs{\sigma_i\prs{\alpha} - \sigma_j\prs{\alpha}}^2$.
+\end{example}
+
+\begin{remark}
+Consider $p\prs{x_1, \ldots, x_n} \coloneqq \prod_{i > j} \prs{x_i - x_j}^2$, which is a symmetric polynomial.
+Let $R$ be the subring of symmetric polynomials in $\mbb{Z}\brs{x_1, \ldots, x_n}$. Then $R$ contains
+\begin{align*}
+s_1 &\coloneqq x_1 + \ldots + x_n \\
+s_2 &\coloneqq \sum_{i < j} x_i x_j \\
+\vdots \\
+s_n &= x_1 \cdot \ldots \cdot x_n \text{.}
+\end{align*}
+Hence $R$ contains
+\[\set{q\prs{s_1, \ldots, s_n}}{q \in \mbb{Z}\brs{x_1, \ldots, x_n}} \text{.}\]
+A theorem states that this is in fact equality. 
+
+So, in the above example, $\Sigma\prs{\Lambda}$ is a polynomial in the $s_i$, which are the coefficients of the minimal polynomial of $\alpha$ over $\mbb{Q}$. This happens to be the discriminant of that minimal polynomial.
+\end{remark}
+
+\begin{example}
+If $\mbb{Q}\prs{\alpha}$ is quadratic and the minimal polynomial of $\alpha$ is $x^2 + bx + c$, then
+\begin{align*}
+\Delta\prs{\Span_{\mbb{Z}}\prs{1, \alpha}} = \det\prs{1 & \frac{-b + \sqrt{b^2 - 4c}}{2} \\ 1 & \frac{-b - \sqrt{b^2 - 4c}}{2}}^2 = b^2 - 4c
+\end{align*}
+which is the usual discriminant.
+\end{example}
+
+\begin{definition}[Order]
+An \emph{order} $\mcal{O}$ in $K$ is a full module in $K$ which is also a ring.
+\end{definition}
+
+\begin{example}
+If $K = \mbb{Q}\prs{\alpha}$ and the minimal polynomial of $\alpha$ is over $\mbb{Z}$, write
+\[\alpha^n + a_{n-1} \alpha^{n-1} + \ldots + a_0 = 0\]
+for $a_i \in \mbb{Z}$. Then
+\[\mbb{Z}\brs{\alpha} = \Span_{\mbb{Z}}\set{1, \alpha, \ldots, \alpha^{n-1}} \text{.}\]
+Then $\mcal{O} \coloneqq \mbb{Z}\brs{\alpha}$ is an order.
+\end{example}
+
+\begin{remark}
+If $\alpha$ satisfies $\alpha^n + a_{n-1} \alpha^{n-1} + \ldots + a_0$ with coefficients in $\mbb{Q}$.
+Taking $m$ to be the lowest-common-multipler of the denominators, we get
+\[\sum_{i = 0}^n m^{n-i} a_i \prs{m \alpha}^i\]
+where $a_n = 1$.
+We get that there's $m \in \mbb{Z}$ such that $m \alpha$ has a minimal polynomial over $\mbb{Z}$. 
+\end{remark}
+
+We give another example that shows orders exist.
+
+\begin{example}
+Let $\vec{\alpha} \coloneqq \prs{\alpha_1, \ldots, \alpha_n}$ be a basis of $K/\mbb{Q}$. Consider the $\mbb{Q}$-linear map $m_\beta \colon K \to K$ which is multiplication by $\beta$. We consider the matrix $\brs{m_\beta}_{\vec{\alpha}} \in M_n\prs{\mbb{Q}}$. Then the map $\beta \mapsto \brs{m_{\beta}}_{\vec{\alpha}}$ is a $\mbb{Q}$-algebra homomorphism (and is in particular a field embedding).
+
+Pulling back $M_n\prs{\mbb{Z}}$ under this homomorphism, one can check that it contains a basis. Hence this gives an order inside $K$. 
+\end{example}
+
+\begin{remark}
+If $\Lambda = \Span_{\mbb{Z}}\prs{\alpha_1, \ldots, \alpha_n}$ is a full module, then $\Lambda$ is an order if and only if $\brs{m_{\alpha_i}}_{\vec{\alpha}} \in M_n\prs{\mbb{Z}}$ for all $i \in [n]$, and $1 \in \Lambda$.
+\end{remark}
+
+\begin{proposition}
+If $\mcal{O} \subseteq K$ is an order, then $\Delta\prs{\mcal{O}} \in \mbb{Z}$.
+\end{proposition}
+
+\begin{proof}
+Let $\vec{\alpha} = \prs{\alpha_1, \ldots, \alpha_n}$ be a basis of $\mcal{O}$ over $\mbb{Z}$. 
+We conclude that
+\[\brs{m_{\alpha_i}}_{\vec{\alpha}} \brs{m_{\alpha_j}}_{\vec{\alpha}} = \brs{m_{\alpha_i \cdot \alpha_j}}_{\vec{\alpha}} \in M_n\prs{\mbb{Z}}\]
+so
+\[\mrm{Tr}_{K/\mbb{Q}}\prs{\alpha_i \alpha_j} \stackrel{(*)}{=} \mrm{Tr}\brs{m_{\alpha_i \cdot \alpha_j}}_{\vec{\alpha}} \in \mbb{Z}\]
+so
+\[\Delta\prs{\mcal{O}} = \det\prs{\mrm{Tr}\prs{\alpha_i \alpha_j}} \in \mbb{Z} \text{.}\]
+
+We're left to explain $(*)$. For $\beta \in K$ we defined
+\[\mrm{Tr}_{K/\mbb{Q}}\prs{\beta} = \sum_{i \in [n]} \sigma_i\prs{\beta} \text{.}\]
+But, it holds that
+\[\mrm{Tr}_{K/\mbb{Q}}\prs{\beta} = \mrm{Tr}\brs{m_{\beta}}_{B}\]
+for any $\mbb{Q}$-basis $B$ of $K$ (this is the usual definition).
+\end{proof}
+
+\begin{proposition}
+Any two orders in $K$ are contained in a single order.
+\end{proposition}
+
+\begin{proof}
+If $\mcal{O}_1, \mcal{O}_2 \subseteq K$ are order, the product
+\[\mcal{O}_1 \cdot \mcal{O}_2 = \\set{sum_{i \in [\ell]} a_i b_i}{\substack{a_i \in \mcal{O}_1 \\ b_i \in \mcal{O}_2}}\]
+is clearly an order that contains both $\mcal{O}_1$ and $\mcal{O}_2$.
+\end{proof}
+
+\begin{theorem}
+There exists a unique maximal order in $K$.
+\end{theorem}
+
+\begin{proof}
+By the previous proposition, it suffices to show that any sequence of order $\mcal{O}_1 \subseteq \mcal{O}_2 \subseteq \ldots$ stabilizes.
+
+Note that $\brs{\mcal{O}_{i+1} : \mcal{O}_{i}} < \infty$ for all $i \in \mbb{Z}_+$. Now, $\brs{\mcal{O}_{i+1} : \mcal{O}_i} = \brs{\varphi\prs{\mcal{O}_{i+1}} : \varphi\prs{\mcal{O}_i}}$ and by the index formula we get
+\[\mrm{Vol}\prs{\mbb{R}^n / \varphi\prs{\mcal{O}_1}}^2 = \brs{\mcal{O}_i \colon \mcal{O}_1}^2 \mrm{Vol}\prs{\mbb{R}^n / \varphi\prs{\mcal{O}_i}}^2 \text{.} \]
+Because both volumes squared are integral up to $\prs{-4}^{r_2}$, we get that $\brs{\mcal{O}_i : \mcal{O}_1}^2$ must divide a given fixed integer. Hence $\brs{\mcal{O}_i : \mcal{O}_1}$ must stabilize.
+\end{proof}
+
+\begin{exercise}
+Note that the argument proving the stabilization of $\mcal{O}_i$ relied on the following lemma:
+If $\Lambda_1 \leq \Lambda_2$ are two full modules, then \[\Delta\prs{\Lambda_2} \cdot \brs{\Lambda_2 : \Lambda_1} = \Delta\prs{\Lambda_1}\text{.}\]
+Prove this in two ways:
+\begin{enumerate}
+\item Using $\Delta\prs{\Lambda} = \prs{\prs{2i}^{r_2} \mrm{Vol}\prs{\mbb{R}^n / \varphi\prs{\Lambda}}}^2$.
+\item Using $\Delta\prs{\Lambda} = \det\prs{\sigma_i\prs{\alpha_j}}_{i,j \in [n]}$, where $\prs{\alpha_1, \ldots, \alpha_n}$ is a $\mbb{Z}$-basis.
+\end{enumerate}
+\end{exercise}
+
 
 \end{document}
