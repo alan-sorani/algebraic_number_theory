@@ -838,10 +838,113 @@ for $b_i \in \bar{A}^{\Omega_1}$.
 We show that the ring $A\brs{b_1, \ldots, b_{n-1}, \alpha} \subseteq \Omega_2$ is finitely-generated as an $A$-module and get the result by \Cref{theorem:integral_element_condition}. 
 This follows from induction by the following lemma.
 \end{enumerate}
+\end{proof}
 
 \begin{lemma}
-Let $A \subseteq B \subseteq C$ be rings.
+Let $A \subseteq B \subseteq C$ be rings such that $B$ is a finitely-generated $A$ module and $C$ is a finitely-generated $B$-module. Then $C$ is a finitely-generated $A$-module.
 \end{lemma}
+
+\begin{proof}
+Writing
+\begin{align*}
+B &= \sum_{i \in [k]} A \beta_i \\
+C &= \sum_{j \in \brs{\ell}} B \gamma_j
+\end{align*}
+we get that
+\[C = \sum_{\substack{i \in [k] \\ j \in [\ell]}} A \beta_i \gamma_j \text{.}\]
 \end{proof}
+
+\begin{corollary}
+If $A \subseteq \Omega$ it holds that
+\[\bar{A}^{\Omega} = \overline{\bar{A}^{\Omega}}^{\Omega} \text{.}\]
+\end{corollary}
+
+\begin{definition}[Integrally-Closed Subring]
+$A \subseteq \Omega$ is \emph{integrally closed} in $\Omega$ if $A = \bar{A}^{\Omega}$.
+\end{definition}
+
+\begin{definition}[Integralled-Closed Ring]
+A ring $A$ is \emph{integrall closed} if it is integrally closed in $\Frac\prs{A}$.
+\end{definition}
+
+\begin{example}
+$\mbb{Z}$ is integrally-closed. Then $\mcal{O}_{\mbb{Q}} = \bar{\mbb{Z}}^{\mbb{Q}} = \mbb{Z}$.
+\end{example}
+
+\begin{proposition}
+More generally, any UFD $A$ is integrally-closed.
+\end{proposition}
+
+\begin{proof}
+Let $\Omega = \Frac\prs{A}$. Let $\frac{a}{b} \in \Omega \setminus A$ with $a,b \in A$ coprime (and $b \notin A^\times$).
+Assume that there's
+\[p\prs{x} = x^n + \sum_{i=0}^{n-1} a_i x^i \in A\brs{x}\]
+such that $p\prs{\alpha} = 0$.
+We can then writ
+\[\frac{a^n}{b} = - \sum_{i=0}^{n-1} a_i b^{n-1} \prs{\frac{a}{b}}^i\]
+where the RHS is in $A$, but the LHS isn't, a contradiction.
+\end{proof}
+
+\begin{proposition}
+Let $A \subseteq \Omega$ and let $B = \bar{A}^{\Omega}$. Then $B$ is integrally-closed. 
+\end{proposition}
+
+\begin{proof}
+We have
+$B \subseteq \Frac\prs{B} \subseteq \Omega$ so
+\begin{align*}
+bar{B}^{\Frac\prs{B}} &= \bar{B}^{\Omega} \cap \Frac\prs{B}
+\\&= B \cap \Frac\prs{B}
+\\&= B \text{.}
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+Maximal orders in number fields are integrally-closed.
+\end{corollary}
+
+\begin{question*}
+Can a sub-order $\mcal{O} \subseteq \mcal{O}_K$ be integrally-closed?
+\end{question*}
+
+\begin{answer*}
+No! Since $\mcal{O}$ is a full-module, $\Frac\prs{\mcal{O}} = \Frac\prs{\mcal{O}_K} = K$,
+and
+\[\mcal{O}_K = \bar{\mbb{Z}}^K = \bar{\mcal{O}}^K \subseteq \bar{\mcal{O}_K}^K = \mcal{O}_K \text{.}\]
+\end{answer*}
+
+\begin{exercise}
+Let $A$ be an integrally-closed ring and let $\Omega$ be a field containing $A$. Let $\alpha \in \Omega$ be algebraic over $\mbb{F} \coloneqq \Frac\prs{A}$ and integral over $A$, then the minimal polynomial $m_\alpha$ of $\alpha$ over $\Frac\prs{A}$ is already over $A$.
+\end{exercise}
+
+\begin{solution}
+WLOG assume that $\Omega / \mbb{F}$ is a finite Galois extension (by considering the splitting field of the minimal polynomial $m_{\alpha}$ of $\alpha$ in over $\mbb{F}$).
+
+Clearly, if $\prs{\alpha = \alpha_1, \alpha_2, \ldots, \alpha_n}$ are the roots of $m_\alpha$, then $\alpha_i \in \bar{A}^{\Omega}$ for all $i \in [n]$. Then, the coefficients of $m_\alpha$, which are symmetric polynomials in the $\alpha_i$'s (by Vieta's theorem), are in \[\bar{A}^{\Omega} \cap \mbb{F} = \bar{A}^{\mbb{F}} = A \text{.}\]  
+\end{solution}
+
+\begin{remark}
+Gauss' lemma follows immediately from the above-theorem, since we've shown that a UFD is integrally-closed.
+\end{remark}
+
+\section{Dedekind Domains}
+
+\begin{definition}[Dedeking Domain]
+A domain $A$ is called \emph{Dedekind} if the following properties hold.
+
+\begin{enumerate}[label = (\roman*)]
+\item $A$ is Noetherian.
+\item $A$ is integrally-closed.
+\item Any non-trivial prime ideal of $A$ is maximal.
+\end{enumerate}
+\end{definition}
+
+\begin{exercise}
+Show that PID's are Dedekind.
+\end{exercise}
+
+\begin{exercise}
+Maximal orders are Dedekind.
+\end{exercise}
 
 \end{document}
