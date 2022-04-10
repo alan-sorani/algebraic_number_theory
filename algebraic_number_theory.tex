@@ -1,6 +1,10 @@
-\documentclass[11pt]{karticle}
+\documentclass[11pt]{article}
 
 \usepackage{math}
+
+\usepackage{comment}
+
+\usepackage{enumitem}
 
 %---TITLE---
 
@@ -469,8 +473,8 @@ Write
 We get that
 \[F_1 = F_1 \cap \mbb{R}^n = F_! \cap \bigsqcup_{w \in L} \prs{F_2 + w} = \bigsqcup_{w \in L} \prs{F_1 \cap \prs{F_2 + w}} ]text{.}\]
 Then
-\[\mrm{Vol}\prs{F_1} = \sum_{w \in L} \mrm{Vol}\prs{F_1 \cap \prs{F_2 + w}} = \sum_{W \in L}\mrm{Vol}\prs{\prs{F_1 + w} \cap F_2}}\]
-and by the same reasoning this is equal to $\mmr{Vol}\prs{F_2}$, hence the result.
+\[\mrm{Vol}\prs{F_1} = \sum_{w \in L} \mrm{Vol}\prs{F_1 \cap \prs{F_2 + w}} = \sum_{W \in L}\mrm{Vol}\prs{\prs{F_1 + w} \cap F_2}\]
+and by the same reasoning this is equal to $\mrm{Vol}\prs{F_2}$, hence the result.
 \end{proof}
 
 \begin{proof}[\ref{corollary:sublattice_covolume}]
@@ -497,7 +501,7 @@ Let $L_1 \leq L_2 \leq \mbb{R}^2$ be subgroups of $\mbb{R}^n$ and assume that $L
 \end{corollary}
 
 \begin{proof}
-If $\set{v_i}_{i \in I}$ is a set of representatives of $L_2 / L_1$ in $L_2$., and $F$ is a parallelopiped of $L_2$ in $\mbb{R}^n$, then by the above $\tilde{F} = \bigsqcup_{i \in I} \prs{F + v_i}$ is a measurable fundamental domain for $L_1$ in $\mbB{R}^n$. If $\brs{L_2 : L_1} = \abs{I}$ is finite, then by definition we have
+If $\set{v_i}_{i \in I}$ is a set of representatives of $L_2 / L_1$ in $L_2$., and $F$ is a parallelopiped of $L_2$ in $\mbb{R}^n$, then by the above $\tilde{F} = \bigsqcup_{i \in I} \prs{F + v_i}$ is a measurable fundamental domain for $L_1$ in $\mbb{R}^n$. If $\brs{L_2 : L_1} = \abs{I}$ is finite, then by definition we have
 \begin{align*}
 \mrm{Vol}\prs{\mbb{R}^n / L_1} &= \abs{I} \cdot \lambda\prs{F} \\
 &= \brs{L_2 : L_1} \mrm{Vol}\prs{\mbb{R}^n / L_2}
@@ -540,7 +544,7 @@ There is a third important way to interpret the discriminant $\Delta\prs{\Lambda
 
 We look at the trace map
 \begin{align*}
-\mmr{Tr}_{K/\mbb{Q}} \colon K &\to \mbb{Q} \\
+\mrm{Tr}_{K/\mbb{Q}} \colon K &\to \mbb{Q} \\
 \alpha &\mapsto \sum_{i \in [n]} \sigma_i\prs{\alpha}
 \end{align*}
 and define
@@ -550,7 +554,13 @@ B \colon K \times K &\to \mbb{Q} \\
 \end{align*}
 
 If we choose the basis $\prs{\alpha_1, \ldots, \alpha_n}$ of $\Lambda$ and represent $B$ by the basis $\prs{\alpha_!, \ldots, \alpha_n}$ we get
-\[\brs{B}_{\vec{\alpha}} = \prs{\mrm{Tr}\prs{\alpha_i, \alpha_j}}_{i,j \in [n]} = \prs{\trs{\vec{\sigma}\prs{\alpha_i}, \vec{\sigma}\prs{\alpha_j}}}_{i,j \in [n]} = pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert}^t pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert} \text{.}\]
+\begin{align*}
+\brs{B}_{\vec{\alpha}} &= \prs{\mrm{Tr}\prs{\alpha_i, \alpha_j}}_{i,j \in [n]}
+\\&=
+\prs{\trs{\vec{\sigma}\prs{\alpha_i}, \vec{\sigma}\prs{\alpha_j}}}_{i,j \in [n]}
+\\&= \pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert}^t  \pmat{\vert & & \vert \\ \vec{\sigma}\prs{\alpha_1} & \cdots & \vec{\sigma}\prs{\alpha_n} \\ \vert & & \vert} \text{.}
+\end{align*}
+
 We see that $\Delta\prs{\Lambda}$ is just the determinnat of a representing matrix of the trace form with respect to a basis of $\Lambda$ over $\mbb{Z}$. This again shows the rationality of $\Delta\prs{\Lambda}$.
 \end{remark}
 
@@ -584,7 +594,7 @@ So, in the above example, $\Sigma\prs{\Lambda}$ is a polynomial in the $s_i$, wh
 \begin{example}
 If $\mbb{Q}\prs{\alpha}$ is quadratic and the minimal polynomial of $\alpha$ is $x^2 + bx + c$, then
 \begin{align*}
-\Delta\prs{\Span_{\mbb{Z}}\prs{1, \alpha}} = \det\prs{1 & \frac{-b + \sqrt{b^2 - 4c}}{2} \\ 1 & \frac{-b - \sqrt{b^2 - 4c}}{2}}^2 = b^2 - 4c
+\Delta\prs{\Span_{\mbb{Z}}\prs{1, \alpha}} = \det\pmat{1 & \frac{-b + \sqrt{b^2 - 4c}}{2} \\ 1 & \frac{-b - \sqrt{b^2 - 4c}}{2}}^2 = b^2 - 4c
 \end{align*}
 which is the usual discriminant.
 \end{example}
@@ -647,7 +657,7 @@ Any two orders in $K$ are contained in a single order.
 
 \begin{proof}
 If $\mcal{O}_1, \mcal{O}_2 \subseteq K$ are order, the product
-\[\mcal{O}_1 \cdot \mcal{O}_2 = \\set{sum_{i \in [\ell]} a_i b_i}{\substack{a_i \in \mcal{O}_1 \\ b_i \in \mcal{O}_2}}\]
+\[\mcal{O}_1 \cdot \mcal{O}_2 = \set{\sum_{i \in [\ell]} a_i b_i}{\substack{a_i \in \mcal{O}_1 \\ b_i \in \mcal{O}_2}}\]
 is clearly an order that contains both $\mcal{O}_1$ and $\mcal{O}_2$.
 \end{proof}
 
@@ -673,5 +683,165 @@ Prove this in two ways:
 \end{enumerate}
 \end{exercise}
 
+%LECTURE 10.4.22
+
+\begin{notation}
+Denote by $\mcal{O}_K$ the maximal order of a field $K$.
+\end{notation}
+
+\begin{example}
+We calculate $\mcal{O}_K$ for $K = \mbb{Q}\prs{\sqrt{d}}$ with $d \in \mbb{Z} \setminus \set{0,1}$ which is square-free.
+Let $\mcal{O} = \mbb{Z}\brs{\sqrt{d}}$, which is an order. We calculate
+\[
+\Delta\prs{\mcal{O}} = \det\pmat{\Tr\prs{1} & \Tr\prs{\sqrt{d}} \\ \Tr\prs{\sqrt{d}} & \Tr\prs{\sqrt{d}}} = \det\pmat{2 & 0 \\ 0 & 2d} = 4d \text{.}
+\]
+
+By the relation
+\[\mbb{Z} \ni \Delta\prs{\mcal{O}} = \brs{\mcal{O}_K : \mcal{O}}^2 \Delta\prs{\mcal{O}_K}\]
+we see that the only option for strict in inclusion is an order $\mcal{O} \subseteq \mcal{O}_K$ containing $0$ as a subgroup of index $2$.
+Assuming this is the case, there are $a,b \in \mbb{Z}$ such that $\frac{a + b\sqrt{d}}{2} \in \mcal{O}_K \setminus \mcal{O}$. WLOG we can assume $a,b \in \set{0,1}$ where not both are $0$, and $a = 1, b = 0$ is impossible because $\frac{1}{2}$ has norm $\frac{1}{4}$ and therefore doesn't belong to any order.
+By similar reasoning, we cannot have $a = 0, b = 1$, since $N\prs{\frac{\sqrt{d}}{2}} = - \frac{d}{4}$ which isn't an integer since $d$ is square-free.
+
+We're left with the possibility $\prs{a,b} = \prs{1,1}$. In this case we have
+\[\mcal{O}_K = \Span_{\mbb{Z}}\prs{1, \frac{1 + \sqrt{d}}{2}} \text{.}\]
+Indeed, we get $\mcal{O} \subseteq \Span_{\mbb{Z}}\set{1, \frac{1 + \sqrt{d}}{2}} \subseteq \mcal{O}_K$ and $\brs{\mcal{O}_K : \mcal{O}}$ so there's nothing in between.
+
+Denote $\alpha = \frac{1 + \sqrt{1}}{2}$, and $B = \prs{1, \alpha}$. Then
+\[\brs{m_\alpha}_B = \pmat{0 & \frac{d-1}{4} \\ 1 & 1} \text{.}\]
+Hnece $\Span_{\mbb{Z}}\prs{1, \alpha}$ is an order if and only if $\frac{d - 1}{4} \in \mbb{Z}$. We deduce that $\mcal{O}$ is the maximal order if and only if $d \equiv 2 \mod{4}$ or $d \equiv 3 \mod{4}$. If $d \equiv 1 \mod{4}$, then $\mcal{O} \subsetneq \mcal{O}_K$ so $\mcal{O}$ isn't maximal.
+\end{example}
+
+\begin{exercise}
+Calculate the maximal order in $\mbb{Q}\prs{\sqrt[3]{2}}$.
+\end{exercise}
+
+\begin{solution}
+Let $\alpha = \sqrt[3]{2}$ and guess that $\mcal{O} \coloneqq \mbb{Z}\brs{\alpha} = \Span_{\mbb{Z}}\prs{1, \alpha, \alpha^2}$ is a maximal order.
+We calculate
+\[\Delta\prs{\mcal{O}} = \det\pmat{\Tr\prs{1} & \Tr\prs{\alpha} & \Tr\prs{\alpha^2} \\ \Tr\prs{\alpha} & \Tr\prs{\alpha^2} & \Tr\prs{2} \\ \Tr\prs{\alpha^2} & \Tr\prs{2} & 2 \Tr\prs{\alpha}} = \det \pmat{3 & 0 & 0 \\ 0 & 0 & 6 \\ 0 & 6 & 0} = -2^2 \cdot 3^3 \text{.}\]
+
+If $\mcal{O}$ is \emph{not} maximal, we should look for a full module $\Lambda$ that contains $\mcal{O}$ as a subgroup of index $2$, $3$, or $6$, since the order must divide $\Delta\prs{\mcal{O}}$.
+\end{solution}
+
+\begin{exercise}
+Let $\xi \coloneqq e^{\frac{2 \pi i}{5}}$ be a primitive fifth root of unity, with minimal polynomial $\Phi\prs{x} \coloneqq x^4 + x^3 + x^2 + x + 1$. Calculate $\mcal{O}_{\mbb{Q}\prs{\xi}}$.
+\end{exercise}
+
+\subsection{Rings of Integers \& Integral Extensions}
+
+Let $\Omega$ be a field and let $A \subseteq \Omega$ be a ring.
+
+\begin{definition}[Integral Element]
+An element $\alpha \in \Omega$ is \emph{integral} over $A$ if there is a monic polynomial $p \in A\brs{x}$ such that $p\prs{\alpha} = 0$.
+\end{definition}
+
+\begin{example}
+If $A$ is a field, then $\alpha$ is integral over $A$ if and only if $\alpha$ is algebraic over $A$.
+\end{example}
+
+\begin{theorem}\label{theorem:integral_element_condition}
+The following are equivalent.
+
+\begin{enumerate}
+\item $\alpha \in \Omega$ is integral over $A$.
+\item The ring $A\brs{\alpha}$ is a finitely-generated $A$-module.
+\item There exists a finitely-generated $A$-module $M \subseteq \Omega$ which is $\alpha$-stable in the sense of $\alpha M \subseteq M$.
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+\begin{description}
+\item[$\prs{1} \implies \prs{2}$:]
+Assume that $p\prs{\alpha}$ for some $p\prs{x} = x^n + \sum_{i = 0}^{n-1} a_i x^i$.
+Then $\alpha^n = \sum_{i=0}^{n-1} a_i \alpha^i$ so
+$A\brs{\alpha}$ is generated as an $A$-module by $1, \alpha, \ldots, \alpha^{n-1}$.
+
+\item[$\prs{2} \implies \prs{3}$:]
+This is clear by taking $M = A\brs{\alpha}$.
+
+\item[$\prs{3} \implies \prs{1}$:]
+Let $M$ be as in condition (3). Let $\beta_1, \ldots, \beta_n \in M$ generate $M$ as an $A$-module.
+Consider the map
+\begin{align*}
+\varphi \colon A^n &\to M \\
+\pmat{a_1 \\ \ldots \\ a_n} &\mapsto \sum_{i \in [n]} a_i \beta_i \text{,}
+\end{align*}
+which is therefore onto.
+
+The fact that $M$ is $\alpha$-stable means that there are $a_{i,j} \in A$ such that
+\[m_{\alpha}\prs{\beta_j} = \alpha \beta_j = \sum_{i \in [n]} a_{i,j} \beta_j \text{.}\]
+Let $L = \prs{a_{i,j}}_{i,j \in [n]}$.
+We get a commutative diagram
+\[
+\begin{tikzcd}
+A^n \arrow[d, swap, "L"] \arrow[r] & M \arrow[d, "m_\alpha"] \\ A^n \arrow[r] & M
+\end{tikzcd}
+\]
+where the upper map is $\pmat{a_1 \\ \vdots \\ a_n} \mapsto \sum a_i \beta_i$.
+We get
+\[\prs{\beta_1, \ldots, \beta_n} L = \prs{\alpha \beta_1, \ldots, \alpha \beta_n} \text{,}\]
+so $\alpha$ is an eigenvalue of $L$. We get that $\alpha$ is a root of the characteristic polynomial of $L$, which is monic over $A$.
+\end{description}
+\end{proof}
+
+\begin{theorem}
+The set
+\[\bar{A}^{\Omega} \coloneqq \set{\alpha \in \Omega}{\text{$\alpha$ is integral over $A$.}}\]
+forms a subring over $\Omega$.
+\end{theorem}
+
+\begin{proof}
+Clearly $\bar{A}^\Omega$ contains $A$, so it contains the unit. We have to show that it is closed under addition and multiplication. Let $\alpha, \beta \in \bar{A}^{\Omega}$. By \Cref{theorem:integral_element_condition} there are $M,N \subseteq \Omega$ both finitely-generated such that $M,N$ are respectively $\alpha,\beta$-stable.
+
+Then $M \cdot N$ is an $A$-module which is finitely-generated (it is generated by the products of generators of $M$ and of $N$). Clearly, this is $\alpha+\beta$-stable and $\alpha\cdot \beta$-stable, hence \Cref{theorem:integral_element_condition} gives the result.
+\end{proof}
+
+\begin{definition}
+The above-mentioned ring is called the \emph{integral closure} of $A$ in $\Omega$.
+\end{definition}
+
+\begin{example}
+Let $A \subseteq \Omega$ be a field. Then $\bar{A}^{\Omega}$ is the subfield of $A$-algebraic elements in $\Omega$.
+
+For example, $\mbb{Q}^{\mbb{C}} = \mbb{Q}$ is the algebraic closure of $\mbb{Q}$ in $\mbb{C}$.
+\end{example}
+
+\begin{proposition}
+Let $\Omega = K$ be a number field, and let $A = \mbb{Z} \subseteq \Omega$.
+Then $\bar{\mbb{Z}}^K = \mcal{O}_K$. 
+\end{proposition}
+
+\begin{proof}
+For $\alpha \in \mcal{O}_K$ we know that $\mcal{O}_K$ is a finitely-generated $\mbb{Z}$-module in $\Omega$ that is $\alpha$-stable. By \Cref{theorem:integral_element_condition} we get that $\alpha$ is integral over $\mbb{Z}$.
+
+In the other direction, if $\alpha$ i integral over $\mbb{Z}$, the ring $\mbb{Z}\brs{\alpha}$ is finitely-generated by \Cref{theorem:integral_element_condition}. Then $\mbb{Z}\brs{\alpha}$ is an order, which contains $\mcal{O}_K$ and therefore equals to it. We get that $\alpha \in \mcal{O}_K$, as required.
+\end{proof}
+
+\begin{lemma}
+Let $A \subseteq \Omega_1 \subseteq \Omega_2$ where $A$ is a ring and $\Omega_i$ are fields. Then
+\begin{enumerate}
+\item $\bar{A}^{\Omega_2} \cap \Omega_1 = \bar{A}^{\Omega_1}$.
+\item $\bar{A}^{\Omega_2} = \overline{\bar{A}^{\Omega_1}}^{\Omega_2}$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+\begin{enumerate}
+\item%1
+This is immediate from definition.
+\item%2
+Since $A \subseteq \bar{A}^{\Omega_1}$, we have $\bar{A}^{\Omega_2} \subseteq \overline{\bar{A}^{\Omega_1}}^{\Omega_2}$. We have to show that there's actual equality.
+
+Let $\alpha \in \overline{\bar{A}^{\Omega_1}}^{\Omega_2}$. We can write
+\[\alpha^n = \sum_{i = 0}^{n-1} b_i \alpha^i\]
+for $b_i \in \bar{A}^{\Omega_1}$.
+We show that the ring $A\brs{b_1, \ldots, b_{n-1}, \alpha} \subseteq \Omega_2$ is finitely-generated as an $A$-module and get the result by \Cref{theorem:integral_element_condition}. 
+This follows from induction by the following lemma.
+\end{enumerate}
+
+\begin{lemma}
+Let $A \subseteq B \subseteq C$ be rings.
+\end{lemma}
+\end{proof}
 
 \end{document}

@@ -1,22 +1,167 @@
 \NeedsTeXFormat{LaTeX2e}[1994/06/01]
-\ProvidesPackage{maths}[2018/06/16 Mathematics Macros]
+\ProvidesPackage{math}[2021/08/19 Mathematics Macros]
 
-\RequirePackage{amsmath,amsfonts,amssymb,mathrsfs,mathtools}
-\RequirePackage{comment} %TODO remove when completed
-\RequirePackage{lipsum} %TODO remove when completed
+\RequirePackage{amsmath,amsfonts,amssymb, mathtools}
 
-%TODO <<<
-%use consistent date formats through some package
-%change exercise numbering
-%add some method of stressing upright text
-%>>>
+%--FONTS--
 
-\RequirePackage{math-fonts}
-\RequirePackage{math-symbols}
-\RequirePackage{math-graphics}
-\RequirePackage{math-theorems}
+\RequirePackage{mathrsfs}
+\RequirePackage{calrsfs}
 
+\newcommand{\mcal}[1]{\mathcal{#1}}
+\newcommand{\mrm}[1]{\mathrm{#1}}
+\newcommand{\mbb}[1]{\mathbb{#1}}
+\newcommand{\mscr}[1]{\mathscr{#1}}
+\newcommand{\mbf}[1]{\mathbf{#1}}
+\newcommand{\mfrak}[1]{\mathfrak{#1}}
 
-\endinput
-%%
-%% End of file `mathss.sty'.
+%--PARENTHESES--
+
+\RequirePackage{xparse}  %for optional different numbers of parameters
+
+\newcommand{\norm}[1]{\left\Vert #1 \right\Vert}
+\NewDocumentCommand\set{mg}{%
+    \ensuremath{\left\{ #1 \IfNoValueTF{#2}{}{\;\middle\vert\; #2} \right\}}%
+}
+\newcommand{\commut}[2]{\left[ #1 : #2 \right]}
+\newcommand{\prs}[1]{\left( #1 \right)}
+\newcommand{\pprs}[1]{\prs{\!\prs{#1}\!}}
+\newcommand{\brs}[1]{\left[ #1 \right]}
+\newcommand{\bbrs}[1]{\brs{\!\brs{#1}\!}}
+\NewDocumentCommand\trs{mg}{%
+    \ensuremath{\left< #1 \IfNoValueTF{#2}{}{\;\middle\vert\; #2} \right>}%
+}
+\newcommand{\abs}[1]{\left| #1 \right|}
+\newcommand{\rest}[2]{{\left. #1 \right|}_{#2}}
+\newcommand{\eval}[3]{{\left. #1 \right|}_{#2}^{#3}}
+\newcommand{\floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil #1 \right\rceil}
+
+%--MATRICES--
+
+\newcommand{\mat}[1]{\begin{matrix}#1\end{matrix}}
+\newcommand{\pmat}[1]{\begin{pmatrix}#1\end{pmatrix}}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+
+%--OBJECTS--
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\ab}{\mathrm{ab}}
+
+%--OPERATORS--
+
+\usepackage{calligra,mathrsfs}
+
+\DeclareMathOperator{\ob}{ob}
+\DeclareMathOperator{\lcm}{lcm}
+\let\hom\relax
+\DeclareMathOperator{\hom}{Hom}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Span}{Span}
+\DeclareMathOperator{\Frac}{Frac}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\Vol}{Vol}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\ev}{ev}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\rad}{rad}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\trdeg}{trdeg}
+\DeclareMathOperator{\Gal}{Gal}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\sHom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\ad}{ad}
+\NewDocumentCommand\diff{g}{%
+    \ensuremath{\IfNoValueTF{#1}{\mathop{}\!\mathrm{d}}{\mathop{}\!\mathrm{d^#1}}}%
+}
+
+\let\mod\relax
+\newcommand{\mod}[1]{\prs{\mathrm{mod} \; #1}}
+
+%--SYMBOLS--
+
+\newcommand{\vareps}{\epsilon}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\rddots}{\cdot^{\cdot^{\cdot}}}
+\newcommand{\del}{\partial}
+
+%--ARROWS--
+
+\newcommand{\repi}{\twoheadrightarrow}
+\newcommand{\lepi}{\twoheadleftarrow}
+\newcommand{\rmono}{\hookrightarrow}
+\newcommand{\lmono}{\hookleftarrow}
+\newcommand{\riso}{\xrightarrow{\sim}}
+\newcommand{\liso}{\xleftarrow{\sim}}
+
+%--RELATIONS--
+
+\newcommand{\properideal}{%
+  \mathrel{\ooalign{$\lneq$\cr\raise.22ex\hbox{$\lhd$}\cr}}}
+\newcommand{\ideal}{\trianglelefteq}
+
+%--TIKZ--
+
+\RequirePackage{tikz}
+\RequirePackage{tikzsymbols}
+\usetikzlibrary{cd, arrows.meta, bending, positioning, shapes}
+
+\RequirePackage{pgfplots} %for function graphs
+
+%---THEOREMS---
+
+\RequirePackage{amsthm}
+
+\theoremstyle{plain}% default
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{question}{Question}
+
+% for specifying a name
+\theoremstyle{plain} % just in case the style had changed
+\newcommand{\thistheoremname}{}
+\newtheorem{genericthm}[theorem]{\thistheoremname}
+\newenvironment{namedtheorem}[1]
+  {\renewcommand{\thistheoremname}{#1}%
+   \begin{genericthm}}
+  {\end{genericthm}}
+
+\theoremstyle{definition}
+
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem*{example*}{Example}
+\newtheorem{construction}[theorem]{Construction}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem*{solution}{Solution}
+
+% for specifying a name
+\theoremstyle{definition} % just in case the style had changed
+\newtheorem{genericdef}[theorem]{\thistheoremname}
+\newenvironment{nameddefinition}[1]
+  {\renewcommand{\thistheoremname}{#1}%
+   \begin{genericdef}}
+  {\end{genericdef}}
+
+\theoremstyle{remark}
+
+\newtheorem{remark}[theorem]{Remark}
+
+%---REFERENCING---
+
+\RequirePackage{cleveref} %for clever referencing
+\crefname{subsection}{subsection}{subsections} %for proper referencing to subsections
+\crefname{subsubsection}{subsubsection}{subsections} %for proper referencing to subsubsections
